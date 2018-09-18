@@ -107,6 +107,7 @@
     [snapshot setValue:[RNFirebaseDatabaseReference getChildKeys:dataSnapshot] forKey:@"childKeys"];
     [snapshot setValue:dataSnapshot.priority forKey:@"priority"];
     [snapshot setValue:dataSnapshot.value forKey:@"value"];
+    [snapshot setValue:dataSnapshot.valueInExportFormat forKey:@"valueInExportFormat"];
 
     return snapshot;
 }
