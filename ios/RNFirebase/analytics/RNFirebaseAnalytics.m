@@ -17,7 +17,7 @@ RCT_EXPORT_METHOD(setAnalyticsCollectionEnabled:(BOOL) enabled) {
 }
 
 RCT_EXPORT_METHOD(setCurrentScreen:(NSString *) screenName screenClass:(NSString *) screenClassOverriew) {
-  RCTUnsafeExecuteOnMainQueueSync(^{
+  RCTExecuteOnMainQueue(^{
     [FIRAnalytics setScreenName:screenName screenClass:screenClassOverriew];
   });
 }

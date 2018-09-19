@@ -29,7 +29,7 @@ RCT_EXPORT_METHOD(initializeApp:
             callback:
             (RCTResponseSenderBlock) callback) {
 
-    RCTUnsafeExecuteOnMainQueueSync(^{
+    RCTExecuteOnMainQueue(^{
         FIRApp *existingApp = [RNFirebaseUtil getApp:appDisplayName];
 
         if (!existingApp) {

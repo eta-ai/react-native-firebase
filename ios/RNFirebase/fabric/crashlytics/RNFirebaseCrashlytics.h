@@ -3,7 +3,7 @@
 #import <Foundation/Foundation.h>
 
 #if __has_include(<Crashlytics/Crashlytics/Crashlytics.h>)
-#import <React/RCTBridgeModule.h>
+#import "RCTBridgeModule.h"
 
 @interface RNFirebaseCrashlytics : NSObject <RCTBridgeModule> {
 
