@@ -7,9 +7,9 @@
 #import <FirebaseMessaging/FirebaseMessaging.h>
 #import <FirebaseInstanceID/FIRInstanceID.h>
 
-#import <React/RCTEventDispatcher.h>
-#import <React/RCTConvert.h>
-#import <React/RCTUtils.h>
+#import "RCTEventDispatcher.h"
+#import "RCTConvert.h"
+#import "RCTUtils.h"
 
 #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 @import UserNotifications;

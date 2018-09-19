@@ -1,7 +1,7 @@
 #import "RNFirebase.h"
 #import "RNFirebaseUtil.h"
 #import <FirebaseCore/FirebaseCore.h>
-#import <React/RCTUtils.h>
+#import "RCTUtils.h"
 
 @implementation RNFirebase
 RCT_EXPORT_MODULE(RNFirebase);
