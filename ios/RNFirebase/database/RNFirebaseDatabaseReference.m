@@ -35,7 +35,9 @@
     NSString *eventRegistrationKey = registration[@"eventRegistrationKey"];
     if (![self hasEventListener:eventRegistrationKey]) {
         id andPreviousSiblingKeyWithBlock = ^(FIRDataSnapshot *_Nonnull snapshot, NSString *_Nullable previousChildName) {
-            [self handleDatabaseEvent:eventType registration:registration dataSnapshot:snapshot previousChildName:previousChildName];
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
+                [self handleDatabaseEvent:eventType registration:registration dataSnapshot:snapshot previousChildName:previousChildName];
+            });
         };
         id errorBlock = ^(NSError *_Nonnull error) {
             NSLog(@"Error onDBEvent: %@", [error debugDescription]);
