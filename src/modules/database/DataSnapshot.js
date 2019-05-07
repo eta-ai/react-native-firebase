@@ -62,17 +62,14 @@ export default class DataSnapshot {
    *
    * @return {{'.value': *, '.priority': *}}
    */
-  exportVal(): ExportedValue {
-    let value = this._value;
-
-    if (isObject(this._value) || Array.isArray(this._value)) {
-      value = JSON.parse(JSON.stringify(this._value));
-    }
-
-    return {
-      '.value': value,
-      '.priority': this._priority,
-    };
+  exportVal(): any {
+    // clone via JSON stringify/parse - prevent modification of this._value
+    if (
+      isObject(this._valueInExportFormat) ||
+      Array.isArray(this._valueInExportFormat)
+    )
+      return JSON.parse(JSON.stringify(this._valueInExportFormat));
+    return this._valueInExportFormat;
   }
 
   /**
@@ -85,9 +82,12 @@ export default class DataSnapshot {
     // TODO validate path is a string
     let value = deepGet(this._value, path);
     if (value === undefined) value = null;
+    let valueInExportFormat = deepGet(this._valueInExportFormat, path);
+        if (valueInExportFormat === undefined) valueInExportFormat = null;
     const childRef = this.ref.child(path);
     return new DataSnapshot(childRef, {
       value,
+      valueInExportFormat,
       key: childRef.key,
       exists: value !== null,
 
