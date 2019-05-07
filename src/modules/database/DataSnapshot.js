@@ -5,11 +5,6 @@
 import { isObject, deepGet, deepExists } from '../../utils';
 import type Reference from './Reference';
 
-type ExportedValue = {
-  '.value': any,
-  '.priority': string | number | null,
-};
-
 /**
  * @class DataSnapshot
  * @link https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot
@@ -20,6 +15,8 @@ export default class DataSnapshot {
   key: string;
 
   _value: any;
+
+  _valueInExportFormat: any;
 
   _priority: any;
 
@@ -36,6 +33,7 @@ export default class DataSnapshot {
 
     // internal use only
     this._value = snapshot.value;
+    this._valueInExportFormat = snapshot.valueInExportFormat;
     this._priority = snapshot.priority === undefined ? null : snapshot.priority;
     this._childKeys = snapshot.childKeys || [];
   }
@@ -83,7 +81,7 @@ export default class DataSnapshot {
     let value = deepGet(this._value, path);
     if (value === undefined) value = null;
     let valueInExportFormat = deepGet(this._valueInExportFormat, path);
-        if (valueInExportFormat === undefined) valueInExportFormat = null;
+    if (valueInExportFormat === undefined) valueInExportFormat = null;
     const childRef = this.ref.child(path);
     return new DataSnapshot(childRef, {
       value,
