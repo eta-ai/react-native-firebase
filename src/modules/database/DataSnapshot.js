@@ -65,8 +65,10 @@ export default class DataSnapshot {
     if (
       isObject(this._valueInExportFormat) ||
       Array.isArray(this._valueInExportFormat)
-    )
+    ) {
       return JSON.parse(JSON.stringify(this._valueInExportFormat));
+    }
+
     return this._valueInExportFormat;
   }
 
